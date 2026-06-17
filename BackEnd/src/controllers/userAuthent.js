@@ -8,7 +8,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const register = async (req, res) => {
-    console.log("Register route hit");
+   
     try {
         //validate the data comeing from the req.cody
         validate(req.body);
@@ -16,7 +16,6 @@ const register = async (req, res) => {
         const { firstName, emailId, password } = req.body;
         req.body.password = await bcrypt.hash(password, 10);
         req.body.role = "user";
-        console.log(req.body);
         const user = await User.create(req.body);
 
         const reply = {
@@ -27,7 +26,6 @@ const register = async (req, res) => {
         }
         const token = jwt.sign({ _id: user._id, emailId: emailId, role: "user" }, process.env.JWT_KEY, { expiresIn: 3600 });
         res.cookie('token', token, { maxAge: 60 * 60 * 1000 });
-        console.log("The data is storing is ", req.body);
         res.status(201).json({
             user:reply ,
             message:"registered Successfully"
@@ -43,7 +41,7 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
     try {
-        console.log(req.body);
+        
         const { emailId, password } = req.body;
         if (!emailId) {
             throw new Error("Invalid credintial");
@@ -105,7 +103,7 @@ const adminRegister = async (req, res) => {
 
         const token = jwt.sign({ _id: user._id, emailId: emailId, role: user.role }, process.env.JWT_KEY, { expiresIn: 3600 });
         res.cookie('token', token, { maxAge: 60 * 60 * 1000 });
-        console.log("The data is storing is ", req.body);
+        
         res.status(201).send("User Created Successfully");
     }
     catch (err) {
