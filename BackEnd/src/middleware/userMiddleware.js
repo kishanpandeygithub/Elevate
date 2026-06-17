@@ -5,6 +5,8 @@ const userMiddleware = async (req , res , next)=>{
     try{
         console.log("validation Start");
         const {token} = req.cookies;
+        console.log("Cookies:", req.cookies);
+        console.log("Token:", req.cookies.token);
         if(!token){
             throw new Error("Token is not Present");
         }
