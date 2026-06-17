@@ -25,7 +25,12 @@ const register = async (req, res) => {
             role:user.role
         }
         const token = jwt.sign({ _id: user._id, emailId: emailId, role: "user" }, process.env.JWT_KEY, { expiresIn: 3600 });
-        res.cookie('token', token, { maxAge: 60 * 60 * 1000 });
+        res.cookie('token', token, {
+    maxAge: 60 * 60 * 1000,
+    httpOnly: true,
+    secure: true,
+    sameSite: 'none'
+});
         res.status(201).json({
             user:reply ,
             message:"registered Successfully"
@@ -61,7 +66,12 @@ const login = async (req, res) => {
             role:user.role
         }
         const token = jwt.sign({ _id: user._id, emailId: emailId, role: user.role }, process.env.JWT_KEY, { expiresIn: 3600 });
-        res.cookie('token', token, { maxAge: 60 * 60 * 1000 });
+       res.cookie('token', token, {
+    maxAge: 60 * 60 * 1000,
+    httpOnly: true,
+    secure: true,
+    sameSite: 'none'
+});
         res.status(201).json({
             user:reply ,
             message:"Login Successfully"
