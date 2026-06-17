@@ -15,7 +15,7 @@ const submitRouter = require("./routes/submit.js");
 const aiRouter = require("./routes/aiChatting.js")
 
 const cors =require('cors');
-
+app.set("trust proxy", 1);
 app.use(cors({
     origin: "https://elevate-frontend-4ou1.onrender.com",
     credentials: true
