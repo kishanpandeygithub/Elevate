@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import ProblemPage from "./pages/ProblemPage";
 import Homepage from "./pages/Homepage";
 import Login from "./pages/Login";
-import Signup from "./pages/signup";
+import Signup from "./pages/Signup";
 import Admin from "./pages/Admin";
 import ProblemCreate from "./component/ProblemCreate"
 import AdminDelete from "./component/AdminDelete";
