@@ -17,8 +17,13 @@ const aiRouter = require("./routes/aiChatting.js")
 const cors =require('cors');
 app.set("trust proxy", 1);
 app.use(cors({
-    origin: "https://elevate-frontend-4ou1.onrender.com",
-    credentials: true
+  origin: [
+    "https://elevate-frontend-4ou1.onrender.com"
+  ],
+  credentials: true, // ✅ Essential for cookies
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "Cookie"],
+  exposedHeaders: ["Set-Cookie"] // ✅ Allow frontend to see Set-Cookie headers
 }));
 
 app.use(express.json());
