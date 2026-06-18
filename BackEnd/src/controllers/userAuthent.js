@@ -29,8 +29,7 @@ const register = async (req, res) => {
     httpOnly: true,
     secure: true,
     sameSite: "none",
-    maxAge: 60 * 60 * 1000,
-    path: "/"
+    maxAge: 60 * 60 * 1000
 });
         res.status(201).json({
             user:reply ,
@@ -72,7 +71,6 @@ const login = async (req, res) => {
     secure: true,
     sameSite: "none",
     maxAge: 60 * 60 * 1000,
-    path: "/"
 });
         res.status(201).json({
             user:reply ,
@@ -119,7 +117,6 @@ const adminRegister = async (req, res) => {
     secure: true,
     sameSite: "none",
     maxAge: 60 * 60 * 1000,
-    path: "/"
 });
         
         res.status(201).send("User Created Successfully");
