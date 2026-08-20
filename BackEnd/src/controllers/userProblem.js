@@ -104,7 +104,6 @@ const updateProblem = async (req, res) => {
             //the result is obtained check if the result id is three or not 
             //otherwise it is the wrong responce
 
-            console.log("yaha tak ho gaya")
             for (const test of testResult) {
                 if (test.status_id == 4) {
                     res.status(400).send('Wrong Answer');
@@ -151,7 +150,7 @@ const deleteProblem = async (req, res) => {
 const getProblemById = async (req, res) => {
     const { id } = req.params;
     try {
-        console.log("route hits")
+        
         if (!id) {
             return res.status(400).send("Id is not Present");
         }

@@ -16,7 +16,7 @@ const userMiddleware = async (req , res , next)=>{
         if(!_id){
             throw new Error("Invalid token");
         }
-        console.log("user found");
+       
         const result = await User.findById(_id);
         if(!result){
             throw new Error("User Dose Not Exist");
@@ -27,7 +27,7 @@ const userMiddleware = async (req , res , next)=>{
         if(IsBlocked){
             throw new Error("Invalid token");
         }
-        console.log("validation end");
+        
         req.result = result;
         next();
     }

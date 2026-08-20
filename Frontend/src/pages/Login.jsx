@@ -38,7 +38,7 @@ function Login() {
     }, [isAuthenticated, navigate]);
 
     const submitData = (data) => {
-        console.log(data);
+        
         dispatch(loginUser(data));
     };
 

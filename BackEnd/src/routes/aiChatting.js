@@ -4,12 +4,10 @@ const userMiddleware = require('../middleware/userMiddleware.js');
 const aiRouter = express.Router();
 
 aiRouter.post("/chat", userMiddleware, async (req, res) => {
-    console.log("solve doubt called, req body: ", req.body);
     try {
         const ai = new GoogleGenAI({ apiKey: process.env.GEMINIAPI });
         const { messages, title, description, visibleTestCases, startCode } = req.body;
         
-        console.log("Before generating response");
         const response = await ai.models.generateContent({
             model: "gemini-2.5-flash",
             contents: messages,
@@ -99,7 +97,7 @@ aiRouter.post("/chat", userMiddleware, async (req, res) => {
 
         // FIX 1: Correctly extract text depending on the @google/genai SDK response shape
         const aiText = response.text || response.candidates?.[0]?.content?.parts?.[0]?.text || "No response generated.";
-        console.log("AI Text:", aiText);
+        
 
         // FIX 2: Change key from 'messages' to 'response' to match frontend expectations
         res.status(200).json({ response: aiText });
