@@ -2,7 +2,7 @@ const Problem = require("../models/problem.js");
 const Submission = require("../models/submission.js");
 const User = require("../models/user.js");
 
-const { getLanguageById, submitBatch, submitToken } = require("../utconsole.logils/problemUtility.js");
+const { getLanguageById, submitBatch, submitToken } = require("../utils/problemUtility.js");
 const submitCode = async (req, res) => {
     try {
         
@@ -10,7 +10,6 @@ const submitCode = async (req, res) => {
         const problemId = req.params.id;
 
         const { code, language } = req.body;
-       
         if (!userId || !code || !language || !problemId) {
             return res.status(400).send("Some Field MIssing");
         }
@@ -96,7 +95,6 @@ const runCode = async (req, res) => {
         const problemId = req.params.id;
 
         const { code, language } = req.body;
-        (userId, " ,", problemId, "  , ", code, "  ,", language);
         if (!userId || !code || !language || !problemId) {
             return res.status(400).send("Some Field MIssing");
         }
@@ -129,7 +127,7 @@ const runCode = async (req, res) => {
         res.status(201).send(testResult);
     }
     catch (err) {
-        
+        console.log(err.message);
         res.status(500).send("Enternal Server error");
     }
 }
